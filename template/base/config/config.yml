@@ -1,0 +1,6 @@
+# ga_code: UA-123456789
+#
+#exception_mailer:
+  #from: 'error@yourdomain.com'
+  #to: 'admins@emailaddress.com'
+  #subject: '[Exception] '

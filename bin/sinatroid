@@ -1,0 +1,53 @@
+#!/usr/bin/env ruby
+## encoding: utf-8
+
+require 'clamp'
+require 'fileutils'
+
+Clamp do
+
+  subcommand 'new', "Create new project" do
+    parameter "DIR_NAME", "Name of the project dir", required: true
+    option "--full", :flag, "Copy all project files and exclude sinatroid gem"
+
+    def execute
+      project_path = File.join(Dir.getwd, dir_name)
+      template_path = File.expand_path('../../template/base/*', __FILE__)
+
+      if File.directory? project_path
+        p "Project already exists!"
+        return 1
+      end
+
+      Dir.mkdir project_path
+      FileUtils.cp_r Dir.glob(template_path), project_path
+
+      if full?
+        template_path = File.expand_path('../../template/full/*', __FILE__)
+        FileUtils.cp_r Dir.glob(template_path), project_path
+      end
+
+      if full?
+        p "Sinatra template has been copied to #{dir_name}"
+      else
+        p "Sinatra project at #{dir_name} has been created!"
+      end
+    end
+  end
+
+  subcommand 'full', "Copy app.rb and lib to this project" do
+    def execute
+      unless Dir.glob("config.ru")
+        p "Doesn't look like project dir :/ Try executing in root dir of this project." 
+        return 1
+      end
+
+      project_path = Dir.getwd
+      template_path = File.expand_path('../../template/full/*', __FILE__)
+
+      FileUtils.cp_r Dir.glob(template_path), project_path
+      p "app.rb and lib files has been copied here!"
+    end
+  end
+
+end

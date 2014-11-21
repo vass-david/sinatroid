@@ -1,0 +1,41 @@
+body
+  font-family: $font-family
+  font-size: $font-size
+  font-weight: $font-weight
+  line-height: $line-height
+  background: $bg
+  color: $c
+
+a
+  color: $link
+  +transition($default-transition)
+
+  &:hover
+    color: $link-hvr
+
+p
+  margin: $p-margin
+
+strong
+  font-weight: 700
+
+em
+  font-style: italic
+
+h1, h2, h3
+  font-weight: 700
+
+h1
+  font-size: $h1-size
+  margin: $h1-margin
+
+h2
+  font-size: $h2-size
+  margin: $h2-margin
+
+h3
+  font-size: $h3-size
+  margin: $h3-margin
+
+.big
+  font-size: $golden

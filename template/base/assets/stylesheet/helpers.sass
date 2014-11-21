@@ -1,0 +1,28 @@
+.clearfix
+  &:before, &:after
+    display: table
+    content: ' '
+  &:after
+    clear: both
+
+.text-center
+  text-align: center
+.text-right
+  text-align: right
+
+.invisible
+  opacity: 0 !important
+.hidden
+  display: none !important
+.transition
+  +transition(all 300ms ease)
+.transition-long
+  +transition(all 1s ease)
+.notransition
+  +transition(none)
+.pull-left
+  float: left
+.pull-right
+  float: right
+.fixed
+  position: fixed
